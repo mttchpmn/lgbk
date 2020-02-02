@@ -1,7 +1,5 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
-
-import { Link as UiLink } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 
 import {
   AppBar,
@@ -18,7 +16,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 
 import SignOutButton from "../SignOut";
-// import SignInButton from "../SignIn";
 import * as ROUTES from "../../constants/routes";
 import { AuthUserContext } from "../Session";
 
