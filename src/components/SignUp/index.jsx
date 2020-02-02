@@ -2,15 +2,28 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
+import { Button, Box, TextField, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
-const SignUpPage = () => (
-  <div>
-    <h1>Sign Up</h1>
-    <SignUpForm />
-  </div>
-);
+const useStyles = makeStyles({
+  root: {
+    marginTop: 20
+  }
+});
+
+const SignUpPage = () => {
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.root}>
+      <Typography variant="h4">Sign Up</Typography>
+      <SignUpForm />
+    </Box>
+  );
+};
 
 const INITIAL_STATE = {
   username: "",
@@ -62,42 +75,50 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
+        <Box>
+          <TextField
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            label="Full Name"
+          />
+        </Box>
 
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
+        <Box>
+          <TextField
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            label="Email Address"
+          />
+        </Box>
 
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
+        <Box>
+          <TextField
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            label="Password"
+          />
+        </Box>
 
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
+        <Box>
+          <TextField
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            label="Confirm Password"
+          />
+        </Box>
 
-        <button disabled={isInvalid} type="submit">
+        <Button disabled={isInvalid} type="submit">
           {" "}
           Sign Up
-        </button>
+        </Button>
         {error && <p>{error.message}</p>}
       </form>
     );
