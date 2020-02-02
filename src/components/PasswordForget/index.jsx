@@ -1,15 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { Button, Box, TextField, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
-const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
-    <PasswordForgetForm />
-  </div>
-);
+const useStyles = makeStyles({
+  root: {
+    marginTop: 20
+  }
+});
+
+const PasswordForgetPage = () => {
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.root}>
+      <Typography variant="h4">Forgot Password?</Typography>
+      <PasswordForgetForm />
+    </Box>
+  );
+};
 
 const INITIAL_STATE = {
   email: "",
@@ -46,16 +59,18 @@ class PasswordForgetFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={this.state.email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <button disabled={isInvalid} type="submit">
+        <Box>
+          <TextField
+            name="email"
+            value={this.state.email}
+            onChange={this.onChange}
+            type="text"
+            label="Email Address"
+          />
+        </Box>
+        <Button disabled={isInvalid} type="submit">
           Reset My Password
-        </button>
+        </Button>
         {error && <p>{error.message}</p>}
       </form>
     );
