@@ -8,11 +8,16 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Toolbar,
   Typography
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import CreateIcon from "@material-ui/icons/Create";
+import HomeIcon from "@material-ui/icons/Home";
+import LibraryIcon from "@material-ui/icons/LibraryBooks";
+import AccountIcon from "@material-ui/icons/AccountCircle";
 import { makeStyles } from "@material-ui/core/styles";
 
 import SignOutButton from "../SignOut";
@@ -89,7 +94,7 @@ const SignInButton = withRouter(({ history }) => (
   <Button onClick={() => history.push(ROUTES.SIGN_IN)}>Sign In</Button>
 ));
 
-const NavAuth = ({ open, setOpen }) => {
+const NavAuth = withRouter(({ open, setOpen, history }) => {
   const classes = useStyles();
 
   return (
@@ -98,16 +103,55 @@ const NavAuth = ({ open, setOpen }) => {
       <Drawer open={open} onClose={() => setOpen(false)}>
         <div className={classes.drawer}>
           <List>
-            <ListItem button>
+            <ListItem
+              button
+              onClick={() => {
+                history.push(ROUTES.HOME);
+                setOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button>
+
+            <ListItem
+              button
+              onClick={() => {
+                history.push(ROUTES.HOME);
+                setOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <CreateIcon />
+              </ListItemIcon>
               <ListItemText primary="Compose" />
             </ListItem>
-            <ListItem button>
+
+            <ListItem
+              button
+              onClick={() => {
+                history.push(ROUTES.HOME);
+                setOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <LibraryIcon />
+              </ListItemIcon>
               <ListItemText primary="Entries" />
             </ListItem>
-            <ListItem button>
+
+            <ListItem
+              button
+              onClick={() => {
+                history.push(ROUTES.ACCOUNT);
+                setOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <AccountIcon />
+              </ListItemIcon>
               <ListItemText primary="Account" />
             </ListItem>
           </List>
@@ -115,6 +159,6 @@ const NavAuth = ({ open, setOpen }) => {
       </Drawer>
     </div>
   );
-};
+});
 
 export default Navigation;
