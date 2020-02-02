@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import { Container } from "@material-ui/core";
+
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/Landing";
 import SignUpPage from "./components/SignUp";
@@ -10,8 +12,6 @@ import HomePage from "./components/Home";
 import AccountPage from "./components/Account";
 import AdminPage from "./components/Admin";
 
-import { Container } from "@material-ui/core";
-
 import * as ROUTES from "./constants/routes";
 import { withAuthentication } from "./components/Session";
 
@@ -19,7 +19,7 @@ const App = () => (
   <Router>
     <div>
       <Navigation />
-      <Container>
+      <Container align="center">
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
         <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
