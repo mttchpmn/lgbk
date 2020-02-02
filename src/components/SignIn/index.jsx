@@ -2,21 +2,32 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
-import { Button } from "@material-ui/core";
+import { Button, Box, TextField, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { SignUpLink } from "../SignUp";
 import { PasswordForgetLink } from "../PasswordForget";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
-const SignInPage = () => (
-  <div>
-    <h1>Sign In</h1>
-    <SignInForm />
-    <PasswordForgetLink />
-    <SignUpLink />
-  </div>
-);
+const useStyles = makeStyles({
+  root: {
+    marginTop: 20
+  }
+});
+
+const SignInPage = () => {
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.root}>
+      <Typography variant="h4">Sign In</Typography>
+      <SignInForm />
+      <PasswordForgetLink />
+      <SignUpLink />
+    </Box>
+  );
+};
 
 const INITIAL_STATE = {
   email: "",
@@ -57,23 +68,27 @@ class SignInFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="password"
-        />
-        <button disabled={isInvalid} type="submit">
+        <Box>
+          <TextField
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            label="Email Address"
+          />
+        </Box>
+        <Box>
+          <TextField
+            name="password"
+            value={password}
+            onChange={this.onChange}
+            type="password"
+            label="Password"
+          />
+        </Box>
+        <Button disabled={isInvalid} type="submit">
           Sign In
-        </button>
+        </Button>
         {error && <p>{error.message}</p>}
       </form>
     );
