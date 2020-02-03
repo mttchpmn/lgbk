@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { compose } from "recompose";
 import moment from "moment";
 
 import {
@@ -12,7 +13,7 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import { withFirebase } from "../../logic/Firebase";
-import { AuthUserContext } from "../../logic/Session";
+import { AuthUserContext, withAuthorisation } from "../../logic/Session";
 
 class EntriesPage extends Component {
   constructor(props) {
@@ -98,5 +99,5 @@ const EntriesList = ({ entries, uid, firebase }) => {
 };
 
 EntriesPage.contextType = AuthUserContext;
-
-export default withFirebase(EntriesPage);
+const condition = authUser => !!authUser;
+export default compose(withAuthorisation(condition), withFirebase)(EntriesPage);
