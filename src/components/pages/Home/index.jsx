@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Editor, EditorState } from "draft-js";
 import "draft-js/dist/Draft.css";
 
-import { withAuthorisation } from "../Session";
+import { withAuthorisation } from "../../logic/Session";
 
 const HomePage = () => (
   <div>

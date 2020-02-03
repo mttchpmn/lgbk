@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import { withFirebase } from "../Firebase";
-import { AuthUserContext } from "../Session";
+import { withFirebase } from "../../logic/Firebase";
+import { AuthUserContext } from "../../logic/Session";
 
 class EntriesPage extends Component {
   constructor(props) {

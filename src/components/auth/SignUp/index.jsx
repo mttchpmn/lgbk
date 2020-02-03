@@ -5,8 +5,8 @@ import { compose } from "recompose";
 import { Button, Box, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { withFirebase } from "../Firebase";
-import * as ROUTES from "../../constants/routes";
+import { withFirebase } from "../../logic/Firebase";
+import * as ROUTES from "../../../constants/routes";
 
 const useStyles = makeStyles({
   root: {

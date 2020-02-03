@@ -3,8 +3,8 @@ import React from "react";
 import { Button, Box, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { AuthUserContext, withAuthorisation } from "../Session";
-import PasswordChangeForm from "../PasswordChange";
+import { AuthUserContext, withAuthorisation } from "../../logic/Session";
+import PasswordChangeForm from "../../auth/PasswordChange";
 
 const useStyles = makeStyles({
   root: {

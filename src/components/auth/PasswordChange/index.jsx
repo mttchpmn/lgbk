@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Button, Box, TextField } from "@material-ui/core";
 
-import { withFirebase } from "../Firebase";
+import { withFirebase } from "../../logic/Firebase";
 
 const INITIAL_STATE = {
   passwordOne: "",

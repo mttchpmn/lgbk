@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { compose } from "recompose";
 
-import { AuthUserContext } from "../Session";
-import { withFirebase } from "../Firebase";
-import { withAuthorisation } from "../Session";
+import { AuthUserContext } from "../../logic/Session";
+import { withFirebase } from "../../logic/Firebase";
+import { withAuthorisation } from "../../logic/Session";
 
 const ComposePage = () => (
   <div>

@@ -20,9 +20,9 @@ import LibraryIcon from "@material-ui/icons/LibraryBooks";
 import AccountIcon from "@material-ui/icons/AccountCircle";
 import { makeStyles } from "@material-ui/core/styles";
 
-import SignOutButton from "../SignOut";
+import SignOutButton from "../auth/SignOut";
 import * as ROUTES from "../../constants/routes";
-import { AuthUserContext } from "../Session";
+import { AuthUserContext } from "../logic/Session";
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -7,8 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { SignUpLink } from "../SignUp";
 import { PasswordForgetLink } from "../PasswordForget";
-import { withFirebase } from "../Firebase";
-import * as ROUTES from "../../constants/routes";
+import { withFirebase } from "../../logic/Firebase";
+import * as ROUTES from "../../../constants/routes";
 
 const useStyles = makeStyles({
   root: {
