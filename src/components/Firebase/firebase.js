@@ -44,6 +44,7 @@ class Firebase {
 
   // *** ENTRIES API ***
   entries = uid => this.db.ref(`entries/${uid}`);
+  entry = (uid, key) => this.db.ref(`entries/${uid}/${key}`);
 
   // createEntry = ({ uid, title, content }) => {
   //   this.db.ref(`users/${uid}/entries`).push({ title, content });

@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import moment from "moment";
 
-import { List, ListItem, ListItemText } from "@material-ui/core";
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+  Typography
+} from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import { withFirebase } from "../Firebase";
 import { AuthUserContext } from "../Session";
@@ -12,24 +20,28 @@ class EntriesPage extends Component {
 
     this.state = {
       loading: false,
-      entries: []
+      entries: null
     };
   }
 
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(({ uid }) => {
-      this.setState({ loading: true });
+      this.setState({ loading: true, uid });
 
       this.props.firebase.entries(uid).on("value", snapshot => {
         const entriesObject = snapshot.val();
-        console.log("entriesObject :", entriesObject);
-
-        const entriesList = Object.keys(entriesObject).map(key => ({
-          ...entriesObject[key],
-          uid: key
-        }));
+        if (entriesObject) {
+          const entriesList = Object.keys(entriesObject).map(key => ({
+            ...entriesObject[key],
+            uid: key
+          }));
+          this.setState({
+            entries: entriesList,
+            loading: false
+          });
+        }
         this.setState({
-          entries: entriesList,
+          entriesList: null,
           loading: false
         });
       });
@@ -41,34 +53,49 @@ class EntriesPage extends Component {
   }
 
   render() {
-    const { entries, loading } = this.state;
+    const { entries, loading, uid } = this.state;
 
     return (
       <div>
         <h1>Entries</h1>
         {loading && <div>Loading...</div>}
-        <EntriesList entries={entries} />
+        <EntriesList
+          entries={entries}
+          uid={uid}
+          firebase={this.props.firebase}
+        />
       </div>
     );
   }
 }
 
-const EntriesList = ({ entries }) => (
-  <List>
-    {entries.map(entry => {
-      const time = moment(entry.timestamp).format("Do MMM");
-      const preview = entry.content.substr(0, 100) + "...";
-      return (
-        <ListItem button key={entry.uid}>
-          <ListItemText
-            primary={`${time} - ${entry.title}`}
-            secondary={preview}
-          />
-        </ListItem>
-      );
-    })}
-  </List>
-);
+const EntriesList = ({ entries, uid, firebase }) => {
+  if (!entries) return <Typography>No entries yet</Typography>;
+  return (
+    <List>
+      {entries.map(entry => {
+        const time = moment(entry.timestamp).format("Do MMM");
+        const preview = entry.content.substr(0, 100) + "...";
+        return (
+          <ListItem button key={entry.uid}>
+            <ListItemText
+              primary={`${time} - ${entry.title}`}
+              secondary={preview}
+            />
+            <ListItemSecondaryAction>
+              <IconButton
+                edge="end"
+                onClick={() => firebase.entry(uid, entry.uid).remove()}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
+};
 
 EntriesPage.contextType = AuthUserContext;
 
