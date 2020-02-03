@@ -21,6 +21,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
+    this.timestamp = app.database.ServerValue.TIMESTAMP;
   }
 
   //  *** AUTH API ***
@@ -40,6 +41,13 @@ class Firebase {
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref(`users`);
+
+  // *** ENTRIES API ***
+  entries = uid => this.db.ref(`entries/${uid}`);
+
+  // createEntry = ({ uid, title, content }) => {
+  //   this.db.ref(`users/${uid}/entries`).push({ title, content });
+  // };
 }
 
 export default Firebase;

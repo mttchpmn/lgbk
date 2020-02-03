@@ -9,6 +9,7 @@ import SignUpPage from "./components/SignUp";
 import SignInPage from "./components/SignIn";
 import PasswordForgetPage from "./components/PasswordForget";
 import HomePage from "./components/Home";
+import ComposePage from "./components/Compose";
 import AccountPage from "./components/Account";
 import AdminPage from "./components/Admin";
 
@@ -29,6 +30,7 @@ const App = () => (
           component={PasswordForgetPage}
         />
         <Route exact path={ROUTES.HOME} component={HomePage} />
+        <Route exact path={ROUTES.COMPOSE} component={ComposePage} />
         <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
         <Route exact path={ROUTES.ADMIN} component={AdminPage} />
       </Container>

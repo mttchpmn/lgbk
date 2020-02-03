@@ -119,7 +119,7 @@ const NavAuth = withRouter(({ open, setOpen, history }) => {
             <ListItem
               button
               onClick={() => {
-                history.push(ROUTES.HOME);
+                history.push(ROUTES.COMPOSE);
                 setOpen(false);
               }}
             >
