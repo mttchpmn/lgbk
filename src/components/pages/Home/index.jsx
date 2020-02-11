@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import { Editor, EditorState } from "draft-js";
 import "draft-js/dist/Draft.css";
 
-import { withAuthorisation } from "../../logic/Session";
+import { withAuthorisation, AuthUserContext } from "../../logic/Session";
 
 const HomePage = () => (
   <div>
-    <h1>Home</h1>
-    <p>Welcome home.</p>
-    <TextEditor />
+    <AuthUserContext.Consumer>
+      {authUser => (
+        <div>
+          <h1>Home</h1>
+          <p>Welcome home, {authUser.username.split(" ")[0]}.</p>
+          <p>Time to start writing. No time like the present.</p>
+        </div>
+      )}
+    </AuthUserContext.Consumer>
   </div>
 );
 
